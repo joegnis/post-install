@@ -15,12 +15,12 @@ function post_install {
 
     # Install zsh plugins
     show_info "Installing zsh plugins..."
-    zsh -ic "source .zshrc; antigen update"
+    zsh -ic "source ~/.zshrc; antigen update"
     show_info "Done"
 
     # Change login shell to zsh
     show_info "Changing login shell to zsh..."
-    sudo usermod -s /bin/zsh $(whoami)
+    sudo usermod -s "$(which zsh)" "$(whoami)"
     show_info "Done"
 
     show_success "Post-installation complete."
