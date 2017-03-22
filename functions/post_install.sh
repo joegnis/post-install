@@ -12,7 +12,7 @@ function post_install {
     # Install local dotfiles
     show_info "Installing local dotfiles..."
     git clone -b superlists-server --recursive \
-        https://github.com/joegnis/dotfiles "$src_dir"/dotfiles_local
+        https://github.com/joegnis/dotfiles-local "$src_dir"/dotfiles_local
     "$src_dir"/dotfiles_local/install
     show_info "Done"
 
