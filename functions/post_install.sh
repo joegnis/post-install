@@ -1,17 +1,19 @@
 #!/bin/bash
 
 function post_install {
+    local src_dir=~/src
+    mkdir "$src_dir"
     # Install dotfiles
     show_info "Installing dotfiles..."
-    git clone --recursive https://github.com/joegnis/dotfiles ~/.dotfiles
-    ~/.dotfiles/install
+    git clone --recursive https://github.com/joegnis/dotfiles "$src_dir"/dotfiles
+    "$src_dir"/dotfiles/install
     show_info "Done"
 
     # Install local dotfiles
     show_info "Installing local dotfiles..."
     git clone -b superlists-server --recursive \
-        https://github.com/joegnis/dotfiles ~/.dotfiles_local
-    ~/.dotfiles_local/install
+        https://github.com/joegnis/dotfiles "$src_dir"/dotfiles_local
+    "$src_dir"/dotfiles_local/install
     show_info "Done"
 
     # Install vim plugins
