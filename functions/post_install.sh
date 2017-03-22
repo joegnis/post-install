@@ -1,16 +1,22 @@
 #!/bin/bash
 
 function post_install {
-    # Pull dotfiles from Github
-    show_info "Pulling dotfiles from Github..."
-    rm ~/.bashrc
+    # Install dotfiles
+    show_info "Installing dotfiles..."
     git clone --recursive https://github.com/joegnis/dotfiles ~/.dotfiles
     ~/.dotfiles/install
     show_info "Done"
 
-    show_info "Installing vim plugins..."
+    # Install local dotfiles
+    show_info "Installing local dotfiles..."
+    git clone -b superlists-server --recursive \
+        https://github.com/joegnis/dotfiles ~/.dotfiles_local
+    ~/.dotfiles_local/install
+    show_info "Done"
+
     # Install vim plugins
-    vim -i NONE -c PlugInstall -c quitall > /dev/null
+    show_info "Installing vim plugins..."
+    vim +silent +PlugInstall +quitall > /dev/null
     show_info "Done"
 
     # Install zsh plugins
